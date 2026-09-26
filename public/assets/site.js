@@ -21,7 +21,79 @@ function savePublicCache(payload){try{localStorage.setItem(CACHE_KEY,JSON.string
 function hydratePublicCache(){try{const raw=localStorage.getItem(CACHE_KEY);if(!raw)return false;const payload=JSON.parse(raw);if(!payload||!Array.isArray(payload.site))return false;site=Object.fromEntries(payload.site.map(x=>[x.language,x]));applyUi();render(site[lang]||site.en||{});renderPriorities(payload.priorities||[]);renderUpdates(payload.updates||[]);renderEvents(payload.events||[]);if(Array.isArray(payload.media)){renderGallery(payload.media);latestRibbonData.media=payload.media}latestRibbonData.updates=payload.updates||[];latestRibbonData.events=payload.events||[];renderLatestRibbon();return true}catch(e){console.warn('Public cache unavailable',e);return false}}
 async function fetchPublicDataDirect(){const results=await Promise.allSettled([db.from('site_content').select('*').order('language'),db.from('priorities').select('*').eq('status','published').order('sort_order'),db.from('updates').select('*').eq('status','published').order('date',{ascending:false}).limit(6),db.from('events').select('*').eq('status','published').order('date',{ascending:true}).limit(8)]);const siteR=results[0],priorR=results[1],updR=results[2],evtR=results[3];const unpack=r=>r.status==='fulfilled'&&!r.value.error?r.value.data||[]:[];const payload={site:unpack(siteR),priorities:unpack(priorR),updates:unpack(updR),events:unpack(evtR)};if(!payload.site.length&&!payload.priorities.length&&!payload.updates.length&&!payload.events.length){const err=[siteR,priorR,updR,evtR].find(r=>r.status==='rejected'||(r.status==='fulfilled'&&r.value.error));throw new Error(err?.status==='fulfilled'?err.value.error.message:String(err?.reason||'No public data returned'));}return payload}
 async function load(){if(syncing)return;syncing=true;try{let payload;try{const response=await fetch('/api/public-data',{cache:'no-store'});const result=await response.json();if(!response.ok||!result.ok)throw new Error(result.error||'Public data endpoint unavailable');payload=result;}catch(apiErr){console.warn('Public API unavailable; loading data directly from Supabase:',apiErr.message);payload=await fetchPublicDataDirect();}if(!Array.isArray(payload.events)||!payload.events.length||payload.errors?.events){try{const direct=await db.from('events').select('*').eq('status','published').order('date',{ascending:true}).limit(40);if(!direct.error&&Array.isArray(direct.data))payload.events=direct.data;else if(direct.error)console.warn('Direct public event query failed:',direct.error.message)}catch(eventErr){console.warn('Direct public event query failed:',eventErr)}}site=Object.fromEntries((payload.site||[]).map(x=>[x.language,x]));applyUi();render(site[lang]||site.en||{});renderPriorities(payload.priorities||[]);renderUpdates(payload.updates||[]);renderEvents(payload.events||[]);latestRibbonData.updates=payload.updates||[];latestRibbonData.events=payload.events||[];renderLatestRibbon();savePublicCache(payload);loadGallery().catch(e=>console.error(e));}catch(e){console.error('Public site sync failed:',e);if(!hydratePublicCache()){applyUi();const msg=lang==='kn'?'ವಿಷಯವನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.':'Unable to load the latest website content. Please refresh and try again.';if($('heroDescription'))$('heroDescription').textContent=msg;}}finally{syncing=false;}}
-async function loadGallery(){try{const response=await fetch('/api/public-media',{cache:'no-store'});const payload=await response.json();if(!response.ok||!payload.ok)throw new Error(payload.error||'Could not load gallery');renderGallery(payload.media||[]);latestRibbonData.media=payload.media||[];renderLatestRibbon();try{const raw=localStorage.getItem(CACHE_KEY);if(raw){const cached=JSON.parse(raw);cached.media=payload.media||[];localStorage.setItem(CACHE_KEY,JSON.stringify(cached));}}catch(_){} }catch(e){console.error('Gallery load failed:',e);if(!$('galleryGrid').children.length)$('galleryGrid').innerHTML=`<p class="muted">${lang==='kn'?'ಗ್ಯಾಲರಿ ತಾತ್ಕಾಲಿಕವಾಗಿ ಲಭ್ಯವಿಲ್ಲ.':'Gallery is temporarily unavailable.'}</p>`}}
+
+async function loadGallery() {
+  try {
+    let media = [];
+
+    const { data: albums, error: albumsError } = await db
+      .from('gallery_albums')
+      .select('id,title,description,photo_urls,status,created_at,updated_at')
+      .eq('status', 'published')
+      .order('created_at', { ascending: false });
+
+    if (!albumsError && Array.isArray(albums) && albums.length) {
+      media = albums
+        .map(a => ({
+          id: a.id,
+          title: a.title || '',
+          description: a.description || '',
+          photo_urls: Array.isArray(a.photo_urls) ? a.photo_urls : [],
+          created_at: a.created_at,
+          updated_at: a.updated_at
+        }))
+        .filter(a => a.photo_urls.length);
+    } else {
+      const { data: objects, error } = await db.storage
+        .from('tv-babu-media')
+        .list('gallery', {
+          limit: 100,
+          sortBy: { column: 'created_at', order: 'desc' }
+        });
+
+      if (error) throw error;
+
+      media = (objects || [])
+        .filter(x => x.name && !x.name.startsWith('.'))
+        .map(x => ({
+          name: x.name,
+          title: '',
+          description: '',
+          photo_urls: [
+            db.storage
+              .from('tv-babu-media')
+              .getPublicUrl(`gallery/${x.name}`).data.publicUrl
+          ],
+          created_at: x.created_at || null,
+          updated_at: x.updated_at || null
+        }));
+    }
+
+    renderGallery(media);
+    latestRibbonData.media = media;
+    renderLatestRibbon();
+
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (raw) {
+        const cached = JSON.parse(raw);
+        cached.media = media;
+        localStorage.setItem(CACHE_KEY, JSON.stringify(cached));
+      }
+    } catch (_) {}
+
+  } catch (e) {
+    console.error('Gallery load failed:', e);
+    if (!$('galleryGrid').children.length) {
+      $('galleryGrid').innerHTML =
+        `<p class="muted">${
+          lang === 'kn'
+            ? 'ಗ್ಯಾಲರಿ ತಾತ್ಕಾಲಿಕವಾಗಿ ಲಭ್ಯವಿಲ್ಲ.'
+            : 'Gallery is temporarily unavailable.'
+        }</p>`;
+    }
+  }
+}
 function setContactLink(id,value,kind){const el=$(id);if(!el)return;const v=String(value||'').trim();if(!v){el.textContent=lang==='kn'?'ನಿರ್ವಾಹಕರಿಂದ ಸೇರಿಸಿ':'Add in Admin';el.removeAttribute('href');el.removeAttribute('target');el.classList.add('empty');return}el.classList.remove('empty');el.textContent=v;if(kind==='email')el.href=`mailto:${v}`;else if(kind==='phone')el.href=`tel:${v.replace(/[^+\d]/g,'')}`;else el.href=v}
 function normalizeWhatsApp(v){const raw=String(v||'').trim();if(!raw)return '';if(/^https?:\/\//i.test(raw))return raw;let digits=raw.replace(/\D/g,'');if(digits.length===10)digits='91'+digits;return digits?`https://wa.me/${digits}`:''}
 function setSocial(id,value,kind,label){const el=$(id);if(!el)return;const v=String(value||'').trim();if(!v){el.hidden=true;return}let href=v;if(kind==='whatsapp')href=normalizeWhatsApp(v);if(!href){el.hidden=true;return}el.hidden=false;el.href=href;const text=el.querySelector('span');if(text)text.textContent=label}
