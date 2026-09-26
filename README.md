@@ -25,7 +25,6 @@ Deploy the project using the hosting configuration already used for this site. C
 
 See `SECURITY-AUDIT.md` before deploying. A source-code review cannot verify the live Supabase policies, account settings, backups, provider encryption, or production deployment configuration.
 
-
 ## SEO files
 
 - `public/robots.txt` gives crawlers the sitemap location and excludes admin/citizen interface paths from crawling.
