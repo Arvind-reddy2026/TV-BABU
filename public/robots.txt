@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /features-admin
+Disallow: /citizen
+Disallow: /assets/
+
+Sitemap: https://tv-babu.vercel.app/sitemap.xml

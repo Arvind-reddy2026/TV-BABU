@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TV BABU · Feature Center</title><link rel="stylesheet" href="assets/admin.css"><style>
+.feature-shell{max-width:1440px;margin:auto;padding:24px}.feature-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}.feature-top h1{margin:4px 0}.feature-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.feature-tabs button{border:1px solid #d7dce5;border-radius:999px;padding:10px 15px;background:#fff;color:#18202d;font-weight:700;cursor:pointer}.feature-tabs button.active{background:#18202d;color:#fff}.feature-panel{background:#fff;border:1px solid #e3e7ed;border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 12px 34px #1522380a}.feature-panel h2{margin-top:0}.feature-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.feature-form label{display:grid;gap:7px;font-weight:650;color:#364152}.feature-form input,.feature-form select,.feature-form textarea{width:100%;padding:12px;border:1px solid #d7dce5;border-radius:10px;font:inherit}.feature-form textarea{min-height:100px;resize:vertical}.feature-form .wide{grid-column:1/-1}.feature-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}.feature-actions button,.feature-list button{border:0;border-radius:9px;padding:10px 14px;background:#ef7b22;color:#fff;font-weight:750;cursor:pointer}.feature-list{display:grid;gap:10px}.feature-item{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:16px;border:1px solid #e6eaf0;border-radius:12px}.feature-item p{margin:6px 0;color:#667085;white-space:pre-wrap}.feature-item small{color:#7a8494}.feature-item select{padding:8px;border:1px solid #d7dce5;border-radius:8px}.feature-muted{color:#667085}.feature-status{font-size:14px;min-height:20px}.feature-status.error{color:#b42318}.feature-status.ok{color:#067647}.feature-search{max-width:560px}.feature-search input{width:100%;padding:12px;border:1px solid #d7dce5;border-radius:10px}.feature-notice{padding:14px 16px;border-radius:12px;background:#fff5e9;color:#82420c;margin:12px 0}.feature-hidden{display:none!important}@media(max-width:720px){.feature-shell{padding:14px}.feature-form{grid-template-columns:1fr}.feature-form .wide{grid-column:auto}.feature-item{display:block}.feature-item .item-actions{margin-top:12px}}
+body.embedded{background:transparent}.embedded .feature-shell{max-width:none;padding:12px;background:transparent}.embedded .feature-top{display:none}.embedded .feature-tabs{top:0}.embedded .feature-panel{box-shadow:0 10px 30px rgba(20,35,55,.05)}
+</style><link rel="stylesheet" href="assets/premium-admin.css"><link rel="stylesheet" href="assets/premium-responsive.css">  <link rel="stylesheet" href="/assets/loading-screen.css">
+<link rel="icon" type="image/png" href="/assets/tv-babu-emblem.png">
+<meta name="robots" content="noindex,nofollow,noarchive">
+</head><body>
+<div id="tvbabu-loader" role="status" aria-live="polite" aria-label="Loading TV Babu">
+  <div class="loader-grid" aria-hidden="true"></div><div class="loader-glow" aria-hidden="true"></div>
+  <div class="loader-orbit" aria-hidden="true"><span class="loader-orbit-dot"></span></div>
+  <div class="loader-content">
+    <div class="loader-brand"><img class="loader-emblem" src="/assets/tv-babu-emblem.webp" alt="TV Babu emblem"><div class="loader-brand-text"><div class="loader-brand-name">TV BABU</div><div class="loader-brand-sub">Public Service · Anekal</div></div></div>
+    <div class="loader-spinner" aria-hidden="true"><img class="loader-spinner-logo" src="/assets/tv-babu-emblem.webp?v=99" alt=""></div>
+    <h2 class="loader-title">A better experience is on its way.</h2>
+    <p class="loader-caption">Bringing your community updates and public services together.</p>
+    <div class="loader-progress-wrap"><div class="loader-progress" aria-hidden="true"><span></span></div><span class="loader-progress-label">Loading</span></div>
+    <div class="loader-foot">People · Service · Community</div>
+  </div>
+</div>
+<script src="/assets/loading-screen.js" defer></script>
+<main class="feature-shell"><div class="feature-top"><div><small>TV BABU · ADMIN</small><h1>Feature Management</h1><p class="feature-muted">Admin-only controls for citizen requests, event registrations and privacy rights requests.</p></div><div class="feature-actions"><a href="/admin">← Back to Admin</a><button id="signOutBtn" type="button">Sign out</button></div></div><div id="authStatus" class="feature-notice">Checking your existing admin session…</div><div id="featureApp" class="feature-hidden"><div class="feature-tabs" id="tabs" role="tablist" aria-label="Feature management"><button type="button" role="tab" id="tab-news" aria-controls="panel-news" aria-selected="false" tabindex="-1" data-tab="news">News Draft Inbox</button><button type="button" role="tab" id="tab-grievances" aria-controls="panel-grievances" aria-selected="false" tabindex="-1" data-tab="grievances">Grievances</button><button type="button" role="tab" id="tab-appointments" aria-controls="panel-appointments" aria-selected="false" tabindex="-1" data-tab="appointments">Appointments</button><button type="button" role="tab" id="tab-registrations" aria-controls="panel-registrations" aria-selected="false" tabindex="-1" data-tab="registrations">Event Registrations</button><button type="button" role="tab" id="tab-privacy" aria-controls="panel-privacy" aria-selected="false" tabindex="-1" data-tab="privacy">Privacy Requests</button></div>
+<section id="panel-news" role="tabpanel" aria-labelledby="tab-news" class="feature-panel feature-hidden" data-panel="news">
+<h2>News Draft Inbox</h2>
+<p class="feature-muted">Add sourced news in English and Kannada. Every item is saved as a draft for admin review; nothing is published automatically. Limit: 2 news drafts per day. Verify facts and source before publishing.</p>
+<div class="feature-notice">Priority category: BJP-related reporting. If none is suitable, choose Trending / latest. Clearly attribute the publisher and retain the original source link. News ingestion is not automated until an approved feed/API is configured.</div>
+<form id="newsDraftForm" class="feature-form">
+<label>English headline<input name="title" required maxlength="200"></label>
+<label>Kannada headline<input name="title_kn" required maxlength="200" lang="kn"></label>
+<label>Publisher / source<input name="source_name" required maxlength="160" placeholder="e.g. Times of India"></label>
+<label>Original article URL<input name="source_url" type="url" required placeholder="https://…"></label>
+<label>News category<select name="news_category"><option value="bjp_related">BJP-related</option><option value="trending">Trending / latest (fallback)</option><option value="official_update">Official update</option></select></label>
+<label>Source publication date<input name="source_published_at" type="datetime-local"></label>
+<label class="wide">English summary / article text<textarea name="description" required maxlength="12000"></textarea></label>
+<label class="wide">Kannada summary / article text<textarea name="description_kn" required maxlength="12000" lang="kn"></textarea></label>
+<label class="wide">Image URL (optional)<input name="image_url" type="url" placeholder="https://…"></label>
+<div class="wide feature-actions"><button type="submit">Save as draft</button><span id="newsDraftStatus" class="feature-status" aria-live="polite"></span></div>
+</form><hr><h3>Saved news drafts</h3><div id="newsDraftList" class="feature-list"></div>
+</section>
+<section id="panel-grievances" role="tabpanel" aria-labelledby="tab-grievances" class="feature-panel feature-hidden" data-panel="grievances"><h2>Grievance management</h2><p class="feature-muted">Review incoming submissions and update their status. Sensitive contact details are admin-only.</p><div id="grievanceList" class="feature-list"></div></section>
+<section id="panel-appointments" role="tabpanel" aria-labelledby="tab-appointments" class="feature-panel feature-hidden" data-panel="appointments"><h2>Appointment requests</h2><div id="appointmentList" class="feature-list"></div></section>
+<section id="panel-registrations" role="tabpanel" aria-labelledby="tab-registrations" class="feature-panel feature-hidden" data-panel="registrations"><h2>Event registrations</h2><div id="registrationList" class="feature-list"></div></section>
+<section id="panel-privacy" role="tabpanel" aria-labelledby="tab-privacy" class="feature-panel feature-hidden" data-panel="privacy"><h2>Privacy & data-rights requests</h2><p class="feature-muted">Review requests for access, correction, erasure, consent withdrawal, or privacy grievances. Verify the requester before disclosing or changing personal data.</p><div id="privacyRequestList" class="feature-list"></div></section></div></main><script type="module" src="assets/features-admin.js"></script><script>
+(function () {
+  function reportHeight() {
+    if (!new URLSearchParams(location.search).has('embedded') || window.parent === window) return;
+    const height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    window.parent.postMessage({ type: 'tvbabu-feature-height', height: height }, location.origin);
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if ('ResizeObserver' in window) new ResizeObserver(reportHeight).observe(document.documentElement);
+  setTimeout(reportHeight, 150);
+  setTimeout(reportHeight, 700);
+})();
+</script></body></html>

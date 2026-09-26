@@ -1,0 +1,117 @@
+/* V91: cinematic premium TV BABU loader */
+#tvbabu-loader{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 46%,#26364c 0%,#111c2d 42%,#08111f 100%);color:#f7f8fb;font-family:Inter,Manrope,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;opacity:1;visibility:visible;transition:opacity .72s cubic-bezier(.22,.61,.36,1),visibility .72s}
+#tvbabu-loader:before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(115deg,transparent 15%,rgba(255,255,255,.025) 48%,transparent 75%),radial-gradient(ellipse at 50% 100%,rgba(236,103,26,.13),transparent 48%)}
+#tvbabu-loader.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
+#tvbabu-loader .loader-grid{position:absolute;inset:0;z-index:-1;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse at center,#000 0%,transparent 75%)}
+#tvbabu-loader .loader-glow{position:absolute;width:min(78vw,760px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(244,112,35,.18),rgba(244,112,35,.035) 42%,transparent 70%);filter:blur(12px);animation:tvbabuGlow 5.5s ease-in-out infinite alternate}
+#tvbabu-loader .loader-orbit{position:absolute;width:300px;height:300px;border:1px solid rgba(255,255,255,.12);border-radius:50%;animation:tvbabuSpin 24s linear infinite}
+#tvbabu-loader .loader-orbit:before,#tvbabu-loader .loader-orbit:after{content:"";position:absolute;inset:20px;border:1px solid rgba(244,125,56,.2);border-radius:50%}
+#tvbabu-loader .loader-orbit:after{inset:43px;border-color:rgba(255,255,255,.075)}
+#tvbabu-loader .loader-orbit-dot{position:absolute;top:28px;left:50%;width:7px;height:7px;border-radius:50%;background:#ff9b55;box-shadow:0 0 18px 4px rgba(255,132,59,.42)}
+#tvbabu-loader .loader-content{position:relative;z-index:2;width:min(430px,calc(100% - 42px));display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 20px}
+#tvbabu-loader .loader-brand{display:flex;align-items:center;gap:13px;margin-bottom:42px;animation:tvbabuRise .8s both}
+#tvbabu-loader .loader-mark{position:relative;width:64px;height:64px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#ff9b48 0%,#f36e1e 48%,#d94c0b 100%);box-shadow:0 14px 36px rgba(237,101,24,.27),inset 0 1px 0 rgba(255,255,255,.48);color:#fff;font-weight:850;font-size:18px;letter-spacing:.5px}
+#tvbabu-loader .loader-mark:after{content:"";position:absolute;inset:-5px;border:1px solid rgba(255,159,91,.27);border-radius:24px}
+#tvbabu-loader .loader-brand-text{text-align:left}
+#tvbabu-loader .loader-brand-name{font-family:Georgia,"Times New Roman",serif;font-size:29px;letter-spacing:.8px;line-height:1.05;color:#fff}
+#tvbabu-loader .loader-brand-sub{font-size:9px;letter-spacing:3.8px;text-transform:uppercase;color:#aeb9c9;margin-top:9px}
+#tvbabu-loader .loader-spinner{width:82px;height:82px;position:relative;margin:0 0 29px;display:grid;place-items:center}
+#tvbabu-loader .loader-spinner:before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.11);border-top:2px solid #ff9b55;border-right:2px solid rgba(255,155,85,.45);animation:tvbabuSpin 1.15s linear infinite}
+#tvbabu-loader .loader-spinner:after{content:"";position:absolute;inset:11px;border-radius:50%;border:1px dashed rgba(255,255,255,.15);animation:tvbabuSpin 12s linear infinite reverse}
+#tvbabu-loader .loader-spinner-core{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 26px rgba(0,0,0,.12);color:#ffad70;font-size:17px;font-weight:800}
+#tvbabu-loader .loader-title{font-size:clamp(21px,4vw,27px);font-weight:730;letter-spacing:-.7px;color:#fff;margin:0 0 10px;animation:tvbabuRise .8s .08s both}
+#tvbabu-loader .loader-caption{font-size:13px;line-height:1.7;color:#aab6c8;margin:0 0 29px;animation:tvbabuRise .8s .14s both}
+#tvbabu-loader .loader-progress-wrap{width:min(290px,100%);display:flex;align-items:center;gap:12px}
+#tvbabu-loader .loader-progress{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+#tvbabu-loader .loader-progress span{display:block;width:35%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ffc18b,#f5782a,#ffb36e);box-shadow:0 0 14px rgba(245,120,42,.45);animation:tvbabuProgress 1.65s cubic-bezier(.45,0,.55,1) infinite}
+#tvbabu-loader .loader-progress-label{font-size:9px;letter-spacing:1.5px;color:#8e9cb1;text-transform:uppercase;white-space:nowrap}
+#tvbabu-loader .loader-foot{margin-top:30px;display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:2.7px;color:#8d9aaf;text-transform:uppercase}
+#tvbabu-loader .loader-foot:before,#tvbabu-loader .loader-foot:after{content:"";width:20px;height:1px;background:linear-gradient(90deg,transparent,#d8793c)}
+#tvbabu-loader .loader-foot:after{transform:scaleX(-1)}
+@keyframes tvbabuSpin{to{transform:rotate(360deg)}}
+@keyframes tvbabuGlow{from{transform:translate(-3%,-2%) scale(.92);opacity:.7}to{transform:translate(4%,3%) scale(1.08);opacity:1}}
+@keyframes tvbabuRise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tvbabuProgress{0%{transform:translateX(-120%);width:26%}55%{width:52%}100%{transform:translateX(390%);width:26%}}
+@media(max-width:520px){#tvbabu-loader .loader-orbit{width:245px;height:245px}#tvbabu-loader .loader-brand{margin-bottom:35px}#tvbabu-loader .loader-mark{width:57px;height:57px;border-radius:18px}#tvbabu-loader .loader-content{padding:20px 12px}}
+@media(prefers-reduced-motion:reduce){#tvbabu-loader *,#tvbabu-loader *:before,#tvbabu-loader *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.2s!important}}
+
+/* V94 official emblem + save-state overlay */
+#tvbabu-loader .loader-emblem{display:block;width:88px;height:88px;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(242,111,28,.24));border-radius:18px;animation:tvbabuEmblemIn .8s cubic-bezier(.2,.75,.25,1) both}
+#tvbabu-loader .loader-brand{gap:18px;margin-bottom:34px}
+#tvbabu-loader .loader-spinner{display:grid;place-items:center}
+#tvbabu-loader .loader-spinner-logo{width:43px;height:43px;object-fit:contain;border-radius:10px;filter:drop-shadow(0 4px 12px rgba(255,142,64,.2));animation:tvbabuLogoPulse 1.8s ease-in-out infinite}
+#tvbabu-loader .loader-mark{display:none}
+@keyframes tvbabuEmblemIn{from{opacity:0;transform:translateY(12px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes tvbabuLogoPulse{0%,100%{transform:scale(.96);filter:drop-shadow(0 0 4px rgba(255,142,64,.2))}50%{transform:scale(1.04);filter:drop-shadow(0 0 12px rgba(255,142,64,.55))}}
+#tvbabu-saving-overlay{position:fixed;inset:0;z-index:2147482999;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(7,16,30,.58);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease;color:#fff;font-family:Inter,Manrope,system-ui,sans-serif}
+#tvbabu-saving-overlay.is-visible{opacity:1;visibility:visible}
+#tvbabu-saving-overlay .saving-card{width:min(350px,100%);padding:30px 26px 25px;border:1px solid rgba(255,255,255,.15);border-radius:24px;background:linear-gradient(145deg,rgba(31,48,70,.98),rgba(9,19,34,.98));box-shadow:0 24px 90px rgba(0,0,0,.35);display:flex;align-items:center;flex-direction:column;text-align:center;gap:15px}
+#tvbabu-saving-overlay img{width:86px;height:86px;object-fit:contain;border-radius:16px;filter:drop-shadow(0 7px 20px rgba(246,121,43,.22))}
+#tvbabu-saving-overlay .saving-spinner{width:34px;height:34px;border:2px solid rgba(255,255,255,.15);border-top-color:#ff9a50;border-right-color:#f5b16e;border-radius:50%;animation:tvbabuSpin .85s linear infinite}
+#tvbabu-saving-overlay strong{font-size:17px;letter-spacing:-.25px}
+#tvbabu-saving-overlay p{margin:0;color:#bac5d4;font-size:12px;line-height:1.55}
+#tvbabu-saving-overlay .saving-track{width:100%;height:3px;border-radius:99px;background:rgba(255,255,255,.13);overflow:hidden}
+#tvbabu-saving-overlay .saving-track span{display:block;width:40%;height:100%;background:linear-gradient(90deg,#ffbf83,#f47721,#ffbf83);animation:tvbabuProgress 1.3s ease-in-out infinite}
+.site-brand-emblem{width:46px;height:46px;flex:0 0 46px;object-fit:contain;border-radius:10px}
+.brand-mark img,.auth-mark img{display:block;width:100%;height:100%;object-fit:contain;border-radius:inherit}
+@media(max-width:520px){#tvbabu-loader .loader-emblem{width:72px;height:72px}#tvbabu-saving-overlay .saving-card{padding:25px 20px}.site-brand-emblem{width:40px;height:40px;flex-basis:40px}}
+
+.brand>.site-brand-emblem{grid-row:1/3;width:44px;height:44px;align-self:center}
+aside .brand>.site-brand-emblem{width:40px;height:40px}
+.loginbox .logo{background:#fff;border:1px solid #edf0f4;border-radius:12px;overflow:hidden}
+.loginbox .logo img{width:100%;height:100%;object-fit:contain;display:block}
+
+
+/* V95 — loader hierarchy, spacing, legibility and responsive polish */
+#tvbabu-loader{padding:clamp(16px,3vh,34px);box-sizing:border-box}
+#tvbabu-loader .loader-grid{opacity:.075;background-size:72px 72px}
+#tvbabu-loader .loader-glow{width:min(82vw,820px);opacity:.8}
+#tvbabu-loader .loader-orbit{display:none!important}
+#tvbabu-loader .loader-content{width:min(620px,100%);max-height:100%;box-sizing:border-box;padding:clamp(12px,2vh,24px) clamp(12px,3vw,28px);justify-content:center;gap:0}
+#tvbabu-loader .loader-brand{gap:15px;margin:0 0 clamp(24px,4vh,42px);animation:tvbabuRise .7s both}
+#tvbabu-loader .loader-emblem{width:clamp(58px,8vw,76px);height:clamp(58px,8vw,76px);border-radius:50%;object-fit:contain;filter:drop-shadow(0 9px 24px rgba(242,111,28,.28))}
+#tvbabu-loader .loader-brand-name{font-size:clamp(24px,3.5vw,31px);letter-spacing:1.2px}
+#tvbabu-loader .loader-brand-sub{font-size:9px;letter-spacing:clamp(2px,.45vw,3.8px);margin-top:7px}
+#tvbabu-loader .loader-spinner{width:clamp(128px,19vh,158px);height:clamp(128px,19vh,158px);flex:0 0 auto;margin:0 0 clamp(23px,3.5vh,34px);border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.065),rgba(255,255,255,.012) 62%,transparent 70%);box-shadow:0 0 0 1px rgba(255,255,255,.06),0 18px 60px rgba(0,0,0,.12);isolation:isolate}
+#tvbabu-loader .loader-spinner:before{inset:0;border-width:2px;border-color:rgba(255,255,255,.12);border-top-color:#ff9b55;border-right-color:#f4a56a;box-shadow:0 0 28px rgba(244,120,42,.09)}
+#tvbabu-loader .loader-spinner:after{inset:12px;border:1px solid rgba(255,255,255,.13);border-left-color:rgba(255,155,85,.58);border-right-color:rgba(255,155,85,.28)}
+#tvbabu-loader .loader-spinner-logo{width:clamp(78px,12vh,100px);height:clamp(78px,12vh,100px);border-radius:50%;filter:drop-shadow(0 8px 18px rgba(255,142,64,.23))}
+#tvbabu-loader .loader-title{max-width:100%;font-size:clamp(22px,3.2vw,29px);line-height:1.2;letter-spacing:-.65px;margin:0 0 12px;text-wrap:balance}
+#tvbabu-loader .loader-caption{max-width:460px;font-size:14px;line-height:1.65;margin:0 auto clamp(25px,4vh,34px);text-wrap:pretty}
+#tvbabu-loader .loader-progress-wrap{width:min(360px,100%);gap:14px}
+#tvbabu-loader .loader-progress{height:5px;background:rgba(255,255,255,.13)}
+#tvbabu-loader .loader-progress-label{font-size:9px;letter-spacing:2px;color:#aab7c8}
+#tvbabu-loader .loader-foot{margin-top:clamp(22px,3.5vh,32px);font-size:9px;letter-spacing:clamp(1.8px,.38vw,3px);line-height:1.5;text-align:center}
+#tvbabu-loader .loader-foot:before,#tvbabu-loader .loader-foot:after{width:28px}
+@media(max-width:600px){
+ #tvbabu-loader .loader-content{width:min(520px,100%);padding:12px 8px}
+ #tvbabu-loader .loader-brand{margin-bottom:clamp(22px,4vh,34px)}
+ #tvbabu-loader .loader-emblem{width:60px;height:60px}
+ #tvbabu-loader .loader-spinner{width:clamp(118px,19vh,142px);height:clamp(118px,19vh,142px);margin-bottom:24px}
+ #tvbabu-loader .loader-spinner-logo{width:78px;height:78px}
+ #tvbabu-loader .loader-title{font-size:clamp(21px,5.8vw,26px)}
+ #tvbabu-loader .loader-caption{font-size:13px;max-width:330px}
+ #tvbabu-loader .loader-foot{letter-spacing:1.6px}
+}
+@media(max-height:650px){
+ #tvbabu-loader .loader-brand{margin-bottom:14px}
+ #tvbabu-loader .loader-emblem{width:54px;height:54px}
+ #tvbabu-loader .loader-spinner{width:108px;height:108px;margin-bottom:15px}
+ #tvbabu-loader .loader-spinner-logo{width:68px;height:68px}
+ #tvbabu-loader .loader-title{font-size:22px;margin-bottom:8px}
+ #tvbabu-loader .loader-caption{margin-bottom:18px;font-size:12px}
+ #tvbabu-loader .loader-foot{margin-top:16px}
+}
+@media(prefers-reduced-motion:reduce){
+ #tvbabu-loader .loader-spinner:before,#tvbabu-loader .loader-spinner:after,#tvbabu-loader .loader-spinner-logo{animation:none!important}
+}
+
+
+/* V97 — keep the central animated emblem; remove only the duplicate header emblem */
+#tvbabu-loader .loader-brand > .loader-emblem{display:none!important}
+#tvbabu-loader .loader-brand{gap:0!important}
+#tvbabu-loader .loader-brand-text{text-align:center!important}
+
+/* V99 — explicitly override legacy hide rules so the center emblem remains visible */
+#tvbabu-loader .loader-spinner-logo{display:block!important;width:clamp(78px,12vh,100px);height:clamp(78px,12vh,100px);object-fit:contain;border-radius:50%;position:relative;z-index:1;animation:tvbabuLogoPulse 1.8s ease-in-out infinite}
+@media(max-width:600px){#tvbabu-loader .loader-spinner-logo{width:78px;height:78px}}

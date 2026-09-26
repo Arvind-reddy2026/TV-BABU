@@ -1,0 +1,44 @@
+/* TV BABU Premium Admin + Feature Center */
+:root{--adm-ink:#17202d;--adm-muted:#667085;--adm-line:#e4e9f0;--adm-orange:#f47721;--adm-blue:#2059a5;--adm-shadow:0 18px 48px rgba(19,35,57,.07)}
+body{background:#f5f7fa;color:var(--adm-ink)}
+#app>aside{background:#fff;border-right:1px solid var(--adm-line);box-shadow:8px 0 28px rgba(20,35,55,.025)}
+#app>aside .brand{padding-bottom:26px;border-bottom:1px solid #edf0f4;margin-bottom:16px}
+#app>aside nav{gap:6px}
+#app>aside nav button,#app>aside nav a{border-radius:10px!important;transition:background .16s ease,color .16s ease,transform .16s ease}
+#app>aside nav button:hover,#app>aside nav a:hover{background:#f6f8fb;color:var(--adm-blue);transform:translateX(2px)}
+#app>aside nav .featureNav{display:flex!important;align-items:center;justify-content:space-between;gap:10px;margin:8px 0;padding:13px 14px!important;background:linear-gradient(135deg,#fff5eb,#fff);border:1px solid #f4d5bc;color:#8d420c!important;font-weight:800!important}
+#app>aside nav .featureNav span{font-size:18px}
+#app>main>header{border-bottom:1px solid var(--adm-line);padding-bottom:22px}
+.pagehead{align-items:center}.heroCard,.metricCard,.quickCards>*,.contentSection,.editorCard,.translationNote,.mediaHelp{border-radius:16px!important;box-shadow:var(--adm-shadow)!important}
+.metricCard{border:1px solid var(--adm-line)}.quickCards{gap:14px}.quickCards>button,.quickCards>.quickFeatureCard{min-height:180px;border:1px solid var(--adm-line);background:#fff;text-align:left;padding:22px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.quickCards>button:hover,.quickCards>.quickFeatureCard:hover{transform:translateY(-3px);border-color:#f2bc92;box-shadow:0 22px 50px rgba(19,35,57,.11)!important}.quickCards>button>span,.quickCards>.quickFeatureCard>span{font-size:12px;letter-spacing:.12em;color:var(--adm-orange);font-weight:800}.quickCards>button>strong,.quickCards>.quickFeatureCard>strong{font-size:18px;letter-spacing:-.02em}.quickCards>button>small,.quickCards>.quickFeatureCard>small{font-size:13px;line-height:1.6;color:var(--adm-muted)}.quickCards>button>b,.quickCards>.quickFeatureCard>b{margin-top:auto;font-size:11px;letter-spacing:.07em;color:var(--adm-blue)}
+/* Feature Center */
+.feature-shell{max-width:1480px!important;padding:clamp(16px,3vw,36px)!important}.feature-top{padding:clamp(20px,3vw,34px);border-radius:20px;background:linear-gradient(120deg,#172435,#253d59 70%,#3a4d5d);color:#fff;box-shadow:0 24px 60px rgba(17,34,55,.18)}.feature-top small{color:#ffbf87;letter-spacing:.15em;font-weight:800}.feature-top h1{font-size:clamp(30px,4vw,44px);letter-spacing:-.045em;color:#fff}.feature-top p{color:#d7e0eb;max-width:760px;line-height:1.65}.feature-top .feature-actions a{color:#fff;text-decoration:none;font-weight:700}.feature-top .feature-actions button{background:#fff;color:#182536;border-radius:10px}.feature-tabs{position:sticky;top:0;z-index:10;padding:12px 0;margin:12px 0 18px;background:rgba(245,247,250,.92);backdrop-filter:blur(14px);border-bottom:1px solid #e5e9ef;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin}.feature-tabs button{white-space:nowrap;border:1px solid #e0e6ee;border-radius:999px;padding:11px 16px;background:#fff;color:#344054;font-size:13px;box-shadow:0 4px 12px rgba(19,35,57,.03);transition:background .15s ease,color .15s ease,transform .15s ease}.feature-tabs button:hover{transform:translateY(-1px);border-color:#efb17e}.feature-tabs button.active{background:#172536;color:#fff;border-color:#172536;box-shadow:0 8px 20px rgba(23,37,54,.18)}.feature-panel{border:1px solid var(--adm-line);border-radius:18px;padding:clamp(18px,2.5vw,30px);box-shadow:var(--adm-shadow);margin:18px 0}.feature-panel h2{font-size:clamp(22px,2.4vw,30px);letter-spacing:-.035em;color:#1a2635}.feature-panel>p{line-height:1.7}.feature-form{gap:16px}.feature-form label{font-size:13px;color:#344054}.feature-form input,.feature-form select,.feature-form textarea,.feature-search input{border:1px solid #d6dee8;border-radius:10px;background:#fcfdff;min-height:45px;transition:border-color .15s ease,box-shadow .15s ease}.feature-form input:focus,.feature-form select:focus,.feature-form textarea:focus,.feature-search input:focus{outline:none;border-color:#2a65a5;box-shadow:0 0 0 3px rgba(42,101,165,.12)}.feature-form textarea{min-height:125px}.feature-actions button,.feature-list button{border-radius:10px;padding:11px 16px;background:var(--adm-orange);box-shadow:0 7px 16px rgba(244,119,33,.16);transition:transform .15s ease,box-shadow .15s ease}.feature-actions button:hover,.feature-list button:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(244,119,33,.22)}.feature-list{gap:12px}.feature-item{border:1px solid var(--adm-line);border-radius:13px;background:linear-gradient(135deg,#fff,#fbfcfe);padding:18px}.feature-item strong{font-size:15px;color:#1d2939}.feature-item p{font-size:13px;line-height:1.65;color:#667085}.feature-item select{min-height:40px;border:1px solid #d7dee8;border-radius:9px;background:#fff}.feature-notice{border:1px solid #f2d4ad;border-radius:12px;background:#fff8ef;color:#854d0e;line-height:1.6}.feature-status{font-size:13px;line-height:1.5}.feature-panel hr{border:0;border-top:1px solid #edf0f4;margin:24px 0}.feature-panel [data-panel] h2{margin-bottom:14px}
+@media(max-width:720px){.feature-shell{padding:12px!important}.feature-top{border-radius:15px}.feature-tabs{top:0}.feature-form{grid-template-columns:1fr}.feature-form .wide{grid-column:auto}.feature-item{display:flex;flex-direction:column}.feature-item .item-actions{display:flex;flex-wrap:wrap;gap:8px}.quickCards{grid-template-columns:1fr}.quickCards>button,.quickCards>.quickFeatureCard{min-height:150px}}
+:focus-visible{outline:3px solid rgba(32,89,165,.7);outline-offset:3px}
+
+/* Admin-only feature navigation: no public-feature promo tile on dashboard. */
+#app>aside{overflow-y:auto;max-height:100vh;scrollbar-width:thin}
+#app>aside nav .adminNavGroup{display:flex;flex-direction:column;gap:3px;margin-top:10px;padding-top:12px;border-top:1px solid var(--adm-line)}
+#app>aside nav .adminNavGroup .adminSubhead{display:block;font-size:10px;letter-spacing:.13em;font-weight:800;color:#7b8492;padding:7px 12px 5px}
+#app>aside nav .adminFeatureLink{display:flex;align-items:center;gap:9px;padding:9px 12px!important;border-radius:8px!important;color:#475467!important;font-size:13px;text-decoration:none;line-height:1.35;transition:background .15s,color .15s}
+#app>aside nav .adminFeatureLink:hover{background:#f4f7fb;color:var(--adm-blue)!important}
+#app>aside nav .adminFeatureLink:focus-visible{outline:3px solid rgba(32,89,165,.55);outline-offset:2px}
+@media(max-width:600px){#app>aside nav .adminNavGroup .adminSubhead{font-size:0;padding:8px 0}#app>aside nav .adminFeatureLink{font-size:0;justify-content:center;padding:11px 4px!important}#app>aside nav .adminFeatureLink::first-letter{font-size:18px}#app>aside nav .adminFeatureLink{white-space:nowrap}}
+
+/* Feature manager stays inside the existing admin workspace. */
+#app>aside nav .adminFeatureLink{width:100%;font:inherit;text-align:left;background:transparent;border:0;cursor:pointer}
+#app>aside nav .adminFeatureLink.active{background:#edf4ef;color:var(--adm-ink,#172033)!important;border-left:3px solid #f47721}
+.featureManagementPage{min-height:calc(100vh - 110px)}
+#featureManagerFrame{display:block;width:100%;height:calc(100vh - 210px);min-height:680px;border:1px solid var(--adm-line,#e2e6eb);border-radius:14px;background:#fff;color:var(--adm-ink,#17202d)}
+@media(max-width:760px){#featureManagerFrame{height:calc(100vh - 190px);min-height:650px}}
+
+
+/* V94 official emblem identity across site navigation and ticket/token components */
+.brand .site-brand-emblem{object-fit:contain}
+.citizen-brand .brand-mark,.auth-mark{overflow:hidden;display:grid;place-items:center}
+.ticket-brand-mark{overflow:hidden;background:#fff!important;border:1px solid #e7edf3}
+.ticket-brand-mark img{width:100%;height:100%;object-fit:contain;display:block}
+.citizen-appointment-token{justify-content:flex-start!important}
+.citizen-appointment-token>img{width:58px;height:58px;object-fit:contain;flex:0 0 58px;border-radius:10px;background:#fff}
+.citizen-token-copy{display:grid;gap:5px;min-width:0;flex:1}
+.appointment-token .token-emblem{width:44px;height:44px;object-fit:contain;vertical-align:middle;margin-right:10px;border-radius:8px;background:#fff}
